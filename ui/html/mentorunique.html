@@ -19,6 +19,22 @@
             <a href="../index.html">Logout</a>
         </div>
     </div>
+    <div id="id02" class="modal">
+            <form class="modal-content animate" action="./mentorunique.html">
+                <div class="imgcontainer">
+                    <h1>create session form</h1>
+                    <p>Please fill in this form to make a session request to this mentor.</p>
+                    <span onclick="document.getElementById('id02').style.display='none'" class="close"
+                        title="Close Modal">×</span>
+                </div>
+                <div class="container">
+                    <label for="remark"><b>questions</b></label>
+                    <textarea name="remark" id="remark" placeholder="enter your questions here..."></textarea>
+                    <input type="submit" value="send">
+                </div>
+                    
+            </form>
+        </div>
     <div class="wrapper">
         <div class="card">
             <div class="photo">
@@ -33,11 +49,12 @@
                     as well in the implementation of react for the front end technologies using the newest and
                     efficient features of ES6.
                 </p></br>
-                <button type="submit">apply</button>
+                
+                <button type="submit" onclick="document.getElementById('id02').style.display='block'"
+                style="width:auto;">apply</button>
                 <a href="mentorslist.html"><button type="button">back</button></a>
+                <h5 class="unique">click <span class="black">"apply"</span> to create session request</h5>
             </div></br>
-            <h5>by clicking <span class="black">"apply" </span> you accept and make a request that you want
-                to be a mentee of this specific mentor</h5><br>
         </div>
     </div>
 </body>
