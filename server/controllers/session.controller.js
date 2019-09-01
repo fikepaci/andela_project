@@ -50,3 +50,10 @@ export function acceptsession(req, res) {
       message: 'Invalid session id',
     });
   }
+  export function allsessionsrequest(req, res) {
+    return res.status(200).send({
+      status: 200,
+      message: 'all sessions request retrieved successfully',
+      data: sessions,
+    });
+  }
