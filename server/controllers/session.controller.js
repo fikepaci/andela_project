@@ -14,3 +14,22 @@ export function createsession(req, res) {
     },
   });
 }
+export function acceptsession(req, res) {
+    const { sessionId } = req.params;
+    const index = sessions.find((u) => u.sessionId === parseInt(sessionId, 10));
+  
+    if (index > -1) {
+      sessions[index].status = 'accepted';
+  
+      return res.status(200).send({
+        status: 200,
+        message: 'session accepted by mentor',
+        sessionId: sessions[index].sessionId,
+      });
+    }
+  
+    return res.status(200).send({
+      status: 200,
+      message: 'Invalid session id',
+    });
+  }
