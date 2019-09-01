@@ -20,3 +20,14 @@ export function signup(req, res) {
     },
   });
 }
+export function signin(req, res) {
+    const token = genToken(req.body.email);
+  
+    return res.status(200).send({
+      status: 200,
+      message: 'User is successfully logged in',
+      data: {
+        token,
+      },
+    });
+  }
