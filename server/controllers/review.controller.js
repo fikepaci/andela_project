@@ -48,4 +48,13 @@ export function signin(req, res) {
       message: 'Invalid user id',
     });
   }
+  export function allmentors(req, res) {
+    const allmentor = users.filter((u) => u.type === 'mentor');
+  
+    return res.status(200).send({
+      status: 200,
+      message: 'all mentors retrieved successfully',
+      data: allmentor,
+    });
+  }
   
