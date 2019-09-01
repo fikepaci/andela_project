@@ -31,3 +31,21 @@ export function signin(req, res) {
       },
     });
   }
+  export function upgradetomentor(req, res) {
+    const { userId } = req.params;
+    const index = users.findIndex((u) => u.userId === parseInt(userId, 10));
+  
+    if (index > -1) {
+      users[index].type = 'mentor';
+      return res.status(200).send({
+        status: 200,
+        message: 'User account changed to mentor',
+        data: users[index],
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'Invalid user id',
+    });
+  }
+  
