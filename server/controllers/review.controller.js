@@ -1,76 +1,32 @@
-import { User, users } from '../models/user.model';
-import genToken from '../helpers/token.helper';
+import { Review, reviews } from '../models/review.model';
+import { sessions } from '../models/session.model';
+import { users } from '../models/user.model';
 
-export function signup(req, res) {
-  const user = new User(users.length + 1, req.body.email,
-    req.body.firstname, req.body.lastname, req.body.password, req.body.address,
-    req.body.bio, req.body.occupation, req.body.expertise);
+export function createreview(req, res) {
+  let { sessionId } = req.params;
+  sessionId = parseInt(sessionId, 10);
+  const isSessionFound = sessions.filter((c) => c.sessionId === sessionId);
 
-  users.push(user);
+  if (isSessionFound.length === 0) {
+    return res.status(404).json({
+      status: 404,
+      error: 'session id not found',
+    });
+  }
 
-  const token = genToken(user.email);
+  console.log(isSessionFound[0]);
+  const sessionData = isSessionFound[0];
+  const fullNames = users.find((info) => info.email === sessionData.menteeEmail);
+  console.log(fullNames);
 
+  const review = new Review((reviews.length + 1), sessionData.sessionId, sessionData.mentorId, sessionData.menteeId, req.body.score, `${fullNames.firstname } ${ fullNames.lastname}`, req.body.remark);
+
+  reviews.push(review);
   return res.status(201).send({
     status: 201,
-    message: 'User created successfully',
     data: {
-      token,
-      message: 'User created successfully',
-      userId: user.userId,
+      message: 'review created successfully',
+      Review: review,
     },
   });
 }
-export function signin(req, res) {
-    const token = genToken(req.body.email);
-  
-    return res.status(200).send({
-      status: 200,
-      message: 'User is successfully logged in',
-      data: {
-        token,
-      },
-    });
-  }
-  export function upgradetomentor(req, res) {
-    const { userId } = req.params;
-    const index = users.findIndex((u) => u.userId === parseInt(userId, 10));
-  
-    if (index > -1) {
-      users[index].type = 'mentor';
-      return res.status(200).send({
-        status: 200,
-        message: 'User account changed to mentor',
-        data: users[index],
-      });
-    }
-    return res.status(200).send({
-      status: 200,
-      message: 'Invalid user id',
-    });
-  }
-  export function allmentors(req, res) {
-    const allmentor = users.filter((u) => u.type === 'mentor');
-  
-    return res.status(200).send({
-      status: 200,
-      message: 'all mentors retrieved successfully',
-      data: allmentor,
-    });
-  }
-  export const specificmentor = (req, res) => {
-    const { mentorId } = req.params;
-    const index = users.find((u) => u.userId === parseInt(mentorId, 10) && u.type === 'mentor');
-  
-    if (index) {
-      return res.status(200).send({
-        status: 200,
-        message: 'mentor retrieved successfully',
-        data: index,
-      });
-    }
-    return res.status(200).send({
-      status: 200,
-      message: 'no mentor with that id',
-    });
-  };
-  
