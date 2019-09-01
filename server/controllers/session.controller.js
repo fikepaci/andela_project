@@ -33,3 +33,20 @@ export function acceptsession(req, res) {
       message: 'Invalid session id',
     });
   }
+  export function rejectsession(req, res) {
+    const { sessionId } = req.params;
+    const index = sessions.find((u) => u.sessionId === parseInt(sessionId, 10));
+  
+    if (index > -1) {
+      sessions[index].status = 'rejected';
+  
+      return res.status(200).send({
+        status: 200,
+        message: 'session rejected by mentor',
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'Invalid session id',
+    });
+  }
