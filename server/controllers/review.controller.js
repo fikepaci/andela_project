@@ -57,4 +57,20 @@ export function signin(req, res) {
       data: allmentor,
     });
   }
+  export const specificmentor = (req, res) => {
+    const { mentorId } = req.params;
+    const index = users.find((u) => u.userId === parseInt(mentorId, 10) && u.type === 'mentor');
+  
+    if (index) {
+      return res.status(200).send({
+        status: 200,
+        message: 'mentor retrieved successfully',
+        data: index,
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'no mentor with that id',
+    });
+  };
   
