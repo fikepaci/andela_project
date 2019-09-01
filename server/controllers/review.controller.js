@@ -30,3 +30,20 @@ export function createreview(req, res) {
     },
   });
 }
+export function deletereview(req, res) {
+    const erase = reviews.findIndex((s) => s.sessionId === req.params.sessionId);
+  
+    if (erase > -1) {
+      reviews.splice(erase, 1);
+      return res.status(200).send({
+        status: 200,
+        message: 'review deleted successfully',
+        data: reviews.reviewid,
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'Invalid session id',
+    });
+  }
+  
