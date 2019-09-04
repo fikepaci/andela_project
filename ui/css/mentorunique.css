@@ -9,7 +9,6 @@
   background-color: #183f2f;
   padding: 20px 10px;
 }
-
 .header a {
   float: left;
   color: black;
@@ -57,7 +56,8 @@
 img {
 	float: left;
 	width:170px;
-	height:170px;
+  height:170px;
+  border-radius: 50%;
 	margin-right:15px;
   }
 .wrapper{
@@ -76,6 +76,17 @@ img {
   background-color: #f1f1f1;
   border-radius: 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+.card2{
+  padding: 16px;
+  text-align: justify;
+  text-justify: inter-word;
+  max-width: 1000px;;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .unique{
   margin: 0 auto;
@@ -145,7 +156,7 @@ textarea {
 } 
 .imgcontainer { 
   text-align: center; 
-  margin: 24px 0 12px 0; 
+  margin: 24px 0 12px 0;
   position: relative; 
 } 
 .container { 
@@ -172,7 +183,7 @@ span.psw {
   background-color: #fefefe; 
   margin: 5% auto 15% auto; 
   border: 1px solid #888; 
-  width: 80%; 
+  width: 400px; 
 } 
 .close { 
   position: absolute; 
@@ -216,7 +227,7 @@ span.psw {
   .cancelbtn { 
       width: 100%; 
   } 
-} 
+}
 input[type=submit]{
 margin: 0 auto;
 display: block;
@@ -225,4 +236,264 @@ color: white;
 font-size: 20px;
 border-radius: 10px;
 padding: 5px 10px;
+}
+.main {
+  margin: 0 auto;
+  position: relative;
+  left : 9em;
+}
+.rating-star-one {
+    direction: rtl;
+    font-size: 30px;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}
+.rating-star-one input {
+    opacity: 0;
+    position: relative;
+    left: -30px;
+    z-index: 2;
+    cursor: pointer;
+}
+.rating-star-one span.star:before {
+    color: #777777;
+}
+.rating-star-one span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+}
+.rating-star-one span {
+    margin-left: -30px;
+}
+.rating-star-one span.star:before {
+    color: #777777;
+    content:"\f006";
+}
+.rating-star-one input:hover + span.star:before, .rating-star-one input:hover + span.star ~ span.star:before, .rating-star-one input:checked + span.star:before, .rating-star-one input:checked + span.star ~ span.star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+ 
+.selected-rating{
+    color: #ffd100;
+    font-weight: bold;
+    font-size: 30px;
+}
+.image2 {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.image2 {
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+
+}
+hr {
+  max-width: 600px;
+}
+.pretwo {
+  margin: 20px 0;
+  padding: 20px;
+  background: #fafafa;
+}
+.pone {
+  width: 700px;
+  float: left;
+  position: relative;
+  left: 3em;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.h {
+  position: relative;
+  top: 3em;
+  left: 12em;
+  float: left;
+}
+h3 {
+  position: relative;
+  left: 10em;
+  float: left;
+  margin-bottom: 5px;
+}
+h4 {
+  position: relative;
+}
+#more {
+  display: none;
+}
+.round {
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  top: 1.5em;
+  float: left;
+  left: 10em;
+}
+.main {
+  margin: 0 auto;
+  position: relative;
+  left: 9em;
+}
+.rating-star-one {
+  direction: rtl;
+  font-size: 30px;
+  unicode-bidi: bidi-override;
+  display: inline-block;
+}
+.rating-star-one input {
+  opacity: 0;
+  position: relative;
+  left: -30px;
+  z-index: 2;
+  cursor: pointer;
+}
+.rating-star-one span.star:before {
+  color: #777777;
+}
+.rating-star-one span.star {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  position: relative;
+  z-index: 1;
+  padding: 5px 5px;
+}
+.rating-star-one span {
+  margin-left: -30px;
+}
+.rating-star-one span.star:before {
+  color: #777777;
+  content: "\f006";
+}
+.rating-star-one input:hover+span.star:before,
+.rating-star-one input:hover+span.star~span.star:before,
+.rating-star-one input:checked+span.star:before,
+.rating-star-one input:checked+span.star~span.star:before {
+  color: #ffd100;
+  content: "\f005";
+}
+.selected-rating {
+  color: #ffd100;
+  font-weight: bold;
+  font-size: 30px;
+}
+.imageone {
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+hr {
+  max-width: 1000px;
+  margin-bottom: 5px;
+}
+pre {
+  margin: 20px 0;
+  padding: 20px;
+  background: #fafafa;
+}
+.p {
+  width: 700px;
+  float: left;
+  position: relative;
+  left: 7em;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.h {
+  position: relative;
+  top: 3em;
+  left: 12em;
+  float: left;
+}
+.review {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  font-size: 30px;
+}
+.button {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  position: relative;
+  left: 40em;
+  margin-bottom: 10px;
+  width: 100px;
+  font-size: 15px;
+  border-radius: 5px;
+  height: 30px;
+  text-transform: uppercase;
+  background: #114b34;
+  color: white;
+}
+#more {display: none;}
+.round { border-radius: 50%;
+margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 1.5em;
+    float: left;
+    left: 10em; }
+.main {
+  margin: 0 auto;
+  position: relative;
+  left : 9em;
+}
+.rating-star-one {
+    direction: rtl;
+    font-size: 30px;
+    unicode-bidi: bidi-override;
+    display: block;
+    float: right;
+    position: relative;
+    right : 5em;
+}
+.rating-star-one input {
+    opacity: 0;
+    position: relative;
+    left: -30px;
+    z-index: 2;
+    cursor: pointer;
+}
+.rating-star-one span.star:before {
+    color: #777777;
+}
+.rating-star-one span.star {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    position: relative;
+    z-index: 1;
+    padding: 7px 7px;
+}
+.rating-star-one span {
+    margin-left: -30px;
+}
+.rating-star-one span.star:before {
+    color: #777777;
+    content:"\f006";
+}
+.rating-star-one input:hover + span.star:before, .rating-star-one input:hover + span.star ~ span.star:before, .rating-star-one input:checked + span.star:before, .rating-star-one input:checked + span.star ~ span.star:before {
+    color: #ffd100;
+    content:"\f005";
+}
+ 
+.selected-rating{
+    color: #ffd100;
+    font-weight: bold;
+    font-size: 30px;
 }
