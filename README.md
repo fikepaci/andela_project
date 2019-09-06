@@ -1,1 +1,1 @@
-# Free-Mentor
+[![Build Status](https://travis-ci.org/fikepaci/free-mentor.svg?branch=develop)](https://travis-ci.org/fikepaci/free-mentor) [![Coverage Status](https://coveralls.io/repos/github/fikepaci/free-mentor/badge.svg?branch=develop)](https://coveralls.io/github/fikepaci/free-mentor?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/0d7869300eebc495fb45/maintainability)](https://codeclimate.com/github/fikepaci/free-mentor/maintainability) 
