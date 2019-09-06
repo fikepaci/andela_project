@@ -18,6 +18,7 @@ github page for user [link here](https://fikepaci.github.io/free-mentor/ui/)
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Installation, Running and deployment for more details. This Application is built in nodejs with es6.
 
 Available API
+
 | URL | METHOD | DESCRIPTION |
 | ------ | ------ | ---------- |
 | /api/v1/auth/signup | POST | Get the user to signup |
