@@ -1,12 +1,7 @@
----
-install:
-  -"npm ci"
 language: node_js
-node_js:
-  -node
-  notification:
-    email:false
-script:
-  -"npm test"
-after-success:
-  npm run coveralls
+node_js: 
+  - "stable"
+script: npm test
+cache: npm
+after_success:
+  - "npm run coveralls"
