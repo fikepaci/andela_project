@@ -2,9 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import swaggerui from 'swagger-ui-express';
-import userRoutes from './routes/user.route';
-import sessionroutes from './routes/session.routes';
-import reviewroutes from './routes/review.routes';
+import userRoutes from './routes/userRoute';
+import sessionroutes from './routes/sessionRoutes';
+import reviewroutes from './routes/reviewRoutes';
 import swaggerdocument from '../swagger.json';
 
 dotenv.config();

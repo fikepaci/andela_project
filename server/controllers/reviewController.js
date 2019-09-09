@@ -1,6 +1,7 @@
-import { Review, reviews } from '../models/review.model';
-import { sessions } from '../models/session.model';
-import { users } from '../models/user.model';
+import { Review, reviews } from '../models/reviewModel';
+import { sessions } from '../models/sessionModel';
+import { users } from '../models/userModel';
+
 
 export function createreview(req, res) {
   let { sessionId } = req.params;
@@ -33,6 +34,7 @@ export function createreview(req, res) {
 export function deletereview(req, res) {
   const { sessionId } = req.params;
   const erase = reviews.findIndex((u) => u.sessionId === parseInt(sessionId, 10));
+
   if (erase > -1) {
     reviews.splice(erase, 1);
     return res.status(200).send({

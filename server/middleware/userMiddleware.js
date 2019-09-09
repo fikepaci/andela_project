@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { users } from '../models/user.model';
+import { users } from '../models/userModel';
 
 export const hashPassword = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);

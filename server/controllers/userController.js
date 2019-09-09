@@ -1,5 +1,5 @@
-import { User, users } from '../models/user.model';
-import genToken from '../helpers/token.helper';
+import { User, users } from '../models/userModel';
+import genToken from '../helpers/tokenHelper';
 
 export function signup(req, res) {
   const user = new User(users.length + 1, req.body.email,
@@ -22,6 +22,7 @@ export function signup(req, res) {
 }
 export function signin(req, res) {
   const token = genToken(req.body.email);
+
   return res.status(200).send({
     status: 200,
     message: 'User is successfully logged in',
