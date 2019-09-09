@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { users } from '../models/userModel';
+import Database from '../database/queries';
 
 export const hashPassword = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
@@ -52,13 +53,15 @@ export function isuser(req, res, next) {
   }
   return 0;
 }
-export function isEmailUsed(req, res, next) {
-  const user = users.find((u) => u.email === req.body.email);
-  if (user) {
+export async function isEmailUsed(req, res, next) {
+
+  const user = await Database.selectBY('users', 'email', req.body.email);
+
+  if (user.rowCount !== 0) {
     return res.status(401).send({
       status: 401,
       message: 'Email already exist',
-      data: user.email,
+      data: user.rows[0].email,
     });
   }
   next();

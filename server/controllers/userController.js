@@ -1,14 +1,14 @@
 import { User, users } from '../models/userModel';
 import genToken from '../helpers/tokenHelper';
+import Database from '../database/queries';
 
-export function signup(req, res) {
-  const user = new User(users.length + 1, req.body.email,
-    req.body.firstname, req.body.lastname, req.body.password, req.body.address,
-    req.body.bio, req.body.occupation, req.body.expertise);
+export async function signup(req, res) {
 
-  users.push(user);
+  const input = req.body;
+  input.type = 'user';
+  const user = await Database.createUsers(input);
+  const token = genToken(input.email);
 
-  const token = genToken(user.email);
 
   return res.status(201).send({
     status: 201,
@@ -16,7 +16,7 @@ export function signup(req, res) {
     data: {
       token,
       message: 'User created successfully',
-      userId: user.userId,
+      userId: user.rows[0].userid,
     },
   });
 }
