@@ -28,6 +28,10 @@ const generalusers = {
   occupation: 'developer',
   expertise: '2years',
 };
+const mentor = {
+  email: 'johdn@gmail.com',
+};
+const mentorToken = jwt.sign(mentor, process.env.KEY, { expiresIn: '1D' });
 const usergeneraltoken = jwt.sign(generalusers, process.env.KEY, { expiresIn: '1D' });
 describe('sessions', () => {
   it('user should be able to create session', (done) => {
@@ -52,6 +56,19 @@ describe('sessions', () => {
       })
       .catch((err) => {
         console.log(err.message);
+      });
+  });
+  it('mentor should be able to accept session', (done) => {
+    chai.request(app).get('/sessions/1/accept')
+      .set('token', mentorToken)
+      .send(newusession)
+      .then((res) => {
+        chai.expect(res).to.have.status(200);
+        done();
+      })
+      .catch((err) => {
+        console.log(err.message);
+        done();
       });
   });
 });
