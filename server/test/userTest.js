@@ -42,8 +42,8 @@ const newUserCredentials = {
 };
 
 const adminToken = jwt.sign(admin, process.env.KEY, { expiresIn: '1D' });
-const userToken = jwt.sign(signedUser, process.env.KEY, { expiresIn: '1D' });
 const usergeneraltoken = jwt.sign(newUserCredentials, process.env.KEY, { expiresIn: '1D' });
+const signedUsertoken = jwt.sign(signedUser, process.env.KEY, { expiresIn: '20hrs' });
 
 describe('user should sign up', () => {
   it('user should be able to signup', (done) => {
@@ -86,18 +86,15 @@ describe('user should sign in', () => {
         done();
       });
   });
-
-  // it('admin should be able to change user to mentor', (done) => {
-  //   chai.request(app)
-  //     .patch('/api/v1/user/2')
-  //     .set('token', adminToken)
-  //     .end((err, res) => {
-  //       console.log(res);
-
-  //       chai.expect(res.status).to.be.eq(200);
-  //       done();
-  //     });
-  // });
+  it('admin should be able to change user to mentor', (done) => {
+    chai.request(app)
+      .patch('/api/v1/user/2')
+      .set('token', adminToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
 });
 describe('user should view list of all mentors', () => {
   it('user should be view list of all mentors', (done) => {
