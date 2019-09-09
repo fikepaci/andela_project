@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createreview, deletereview } from '../controllers/review.controller';
-import { isEmailUsed, isAdmin } from '../middleware/user.middleware';
-import verifyToken from '../middleware/token.middleware';
+import { createreview, deletereview } from '../controllers/reviewController';
+import { isEmailUsed, isAdmin } from '../middleware/userMiddleware';
+import verifyToken from '../middleware/tokenMiddleware';
 
 const router = Router();
 

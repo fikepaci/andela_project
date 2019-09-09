@@ -1,6 +1,6 @@
-import { Review, reviews } from '../models/review.model';
-import { sessions } from '../models/session.model';
-import { users } from '../models/user.model';
+import { Review, reviews } from '../models/reviewModel';
+import { sessions } from '../models/sessionModel';
+import { users } from '../models/userModel';
 
 export function createreview(req, res) {
   let { sessionId } = req.params;
@@ -19,7 +19,7 @@ export function createreview(req, res) {
   const fullNames = users.find((info) => info.email === sessionData.menteeEmail);
   console.log(fullNames);
 
-  const review = new Review((reviews.length + 1), sessionData.sessionId, sessionData.mentorId, sessionData.menteeId, req.body.score, `${fullNames.firstname } ${ fullNames.lastname}`, req.body.remark);
+  const review = new Review((reviews.length + 1), sessionData.sessionId, sessionData.mentorId, sessionData.menteeId, req.body.score, `${fullNames.firstname} ${fullNames.lastname}`, req.body.remark);
 
   reviews.push(review);
   return res.status(201).send({
@@ -31,19 +31,19 @@ export function createreview(req, res) {
   });
 }
 export function deletereview(req, res) {
-    const erase = reviews.findIndex((s) => s.sessionId === req.params.sessionId);
-  
-    if (erase > -1) {
-      reviews.splice(erase, 1);
-      return res.status(200).send({
-        status: 200,
-        message: 'review deleted successfully',
-        data: reviews.reviewid,
-      });
-    }
+  const { sessionId } = req.params;
+  const erase = reviews.findIndex((u) => u.sessionId === parseInt(sessionId, 10));
+
+  if (erase > -1) {
+    reviews.splice(erase, 1);
     return res.status(200).send({
       status: 200,
-      message: 'Invalid session id',
+      message: 'review deleted successfully',
+      data: reviews.reviewid,
     });
   }
-  
+  return res.status(200).send({
+    status: 200,
+    message: 'Invalid session id',
+  });
+}

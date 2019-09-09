@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import verifyToken from '../middleware/token.middleware';
+import verifyToken from '../middleware/tokenMiddleware';
 import {
   signin, signup, upgradetomentor, allmentors, specificmentor,
-} from '../controllers/user.controller';
-import validate from '../middleware/validation.middleware';
+} from '../controllers/userController';
+import validate from '../middleware/validationMiddleware';
 import {
   hashPassword, authanticate, isuser, isAdmin, isEmailUsed,
-} from '../middleware/user.middleware';
+} from '../middleware/userMiddleware';
 
 const router = Router();
 

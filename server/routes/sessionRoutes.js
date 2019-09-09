@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import verifyToken from '../middleware/token.middleware';
-import { ismentor, isuser } from '../middleware/user.middleware';
+import verifyToken from '../middleware/tokenMiddleware';
+import { ismentor, isuser } from '../middleware/userMiddleware';
 import {
   createsession, acceptsession, rejectsession, allsessionsrequest,
-} from '../controllers/session.controller';
+} from '../controllers/sessionController';
 
 const router = Router();
 

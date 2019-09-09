@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { users } from '../models/user.model';
+import { users } from '../models/userModel';
 
 export default function verifyToken(req, res, next) {
   const token = req.header('token');
