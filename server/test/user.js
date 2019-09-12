@@ -5,41 +5,15 @@ import { it, describe } from 'mocha';
 import jwt from 'jsonwebtoken';
 
 import app from '../app';
+
+import {
+  newuser, admin, generalusers, signedUser, newUserCredentials,
+} from './mockData';
+
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
 
-const newuser = {
-  email: 'paci@gmail.com',
-  firstname: 'nicolas',
-  lastname: 'aimable',
-  password: 'fikepaci20',
-  address: 'kigali,kicukiro',
-  bio: 'i like learning',
-  occupation: 'student',
-  expertise: '5years',
-};
-const generalusers = {
-  email: 'pacifique@gmail.com',
-  firstname: 'brian',
-  lastname: 'james',
-  password: 'kicukiro2',
-  address: 'kigali,kist',
-  bio: 'i like knowing new things',
-  occupation: 'developer',
-  expertise: '2years',
-};
-
-
-const admin = {
-  email: 'johdndoe@gmail.com',
-};
-const signedUser = {
-  email: newuser.email,
-};
-const newUserCredentials = {
-  email: generalusers.email,
-};
 
 const adminToken = jwt.sign(admin, process.env.KEY, { expiresIn: '1D' });
 const userToken = jwt.sign(signedUser, process.env.KEY, { expiresIn: '1D' });
@@ -72,40 +46,6 @@ describe('user should sign up', () => {
     chai.request(app).post('/api/v1/auth/signup').send(newuser)
       .end((err, res) => {
         res.should.have.status(401);
-        done();
-      });
-  });
-});
-describe('user should sign in', () => {
-  it('user should be able to sign in', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin')
-      .send({ email: newuser.email, password: newuser.password })
-      .end((err, res) => {
-        chai.expect(res.status).to.be.eq(200);
-        done();
-      });
-  });
-
-  // it('admin should be able to change user to mentor', (done) => {
-  //   chai.request(app)
-  //     .patch('/api/v1/user/2')
-  //     .set('token', adminToken)
-  //     .end((err, res) => {
-  //       console.log(res);
-
-  //       chai.expect(res.status).to.be.eq(200);
-  //       done();
-  //     });
-  // });
-});
-describe('user should view list of all mentors', () => {
-  it('user should be view list of all mentors', (done) => {
-    chai.request(app)
-      .get('/api/v1/mentors')
-      .set('token', usergeneraltoken)
-      .end((err, res) => {
-        res.should.have.status(200);
         done();
       });
   });
