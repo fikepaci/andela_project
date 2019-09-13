@@ -50,3 +50,25 @@ describe('user should sign up', () => {
       });
   });
 });
+describe('user should sign in', () => {
+  it('user should be able to sign in', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ email: newuser.email, password: newuser.password })
+      .end((err, res) => {
+        chai.expect(res.status).to.be.eq(200);
+        done();
+      });
+  });
+describe('user should view list of all mentors', () => {
+  it('user should be view list of all mentors', (done) => {
+    chai.request(app)
+      .get('/api/v1/mentors')
+      .set('token', usergeneraltoken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
+
