@@ -86,19 +86,6 @@ describe('user should sign in', () => {
         done();
       });
   });
-
-  // it('admin should be able to change user to mentor', (done) => {
-  //   chai.request(app)
-  //     .patch('/api/v1/user/2')
-  //     .set('token', adminToken)
-  //     .end((err, res) => {
-  //       console.log(res);
-
-  //       chai.expect(res.status).to.be.eq(200);
-  //       done();
-  //     });
-  // });
-});
 describe('user should view list of all mentors', () => {
   it('user should be view list of all mentors', (done) => {
     chai.request(app)
