@@ -1,33 +1,39 @@
+import jwt from 'jsonwebtoken';
 import { Review, reviews } from '../models/reviewModel';
 import { sessions } from '../models/sessionModel';
 import { users } from '../models/userModel';
+import Database from '../database/queries';
 
-export function createreview(req, res) {
+export async function createreview(req, res) {
+  const token = req.header('token');
+  const verified = jwt.verify(token, process.env.KEY);
+
   let { sessionId } = req.params;
   sessionId = parseInt(sessionId, 10);
-  const isSessionFound = sessions.filter((c) => c.sessionId === sessionId);
+  const user = await Database.findUser('sessions', 'sessionid', sessionId);
+  const user1 = await Database.findUser('users', 'userid', user.rows[0].menteeid);
+  console.log('here', req.params, sessionId, user, verified);
 
-  if (isSessionFound.length === 0) {
-    return res.status(404).json({
-      status: 404,
-      error: 'session id not found',
-    });
-  }
+  // if (user.rowCount !== 0) {
+  //   const reviewNew = {
+  //     sessionid: user.rows[0].sessionid,
+  //     mentorid: user.rows[0].mentorid,
+  //     menteeid: parseInt(user1.rows[0].userid, 10),
+  //     score: req.body.score,
+  //     menteefullname: `${user1.rows[0].firstname} ${user1.rows[0].lastname}`,
+  //     remark: req.body.remark,
+  //   };
 
-  console.log(isSessionFound[0]);
-  const sessionData = isSessionFound[0];
-  const fullNames = users.find((info) => info.email === sessionData.menteeEmail);
-  console.log(fullNames);
-
-  const review = new Review((reviews.length + 1), sessionData.sessionId, sessionData.mentorId, sessionData.menteeId, req.body.score, `${fullNames.firstname} ${fullNames.lastname}`, req.body.remark);
-
-  reviews.push(review);
-  return res.status(201).send({
-    status: 201,
-    data: {
-      message: 'review created successfully',
-      Review: review,
-    },
+  //   const result = await Database.createReviews(reviewNew);
+  //   return res.status(201).send({
+  //     status: 201,
+  //     message: 'review created successfully',
+  //     data: result.rows[0],
+  //   });
+  // }
+  return res.status(404).send({
+    status: 404,
+    message: 'not found',
   });
 }
 export function deletereview(req, res) {

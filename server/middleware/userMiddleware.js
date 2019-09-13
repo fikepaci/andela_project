@@ -10,17 +10,12 @@ export const hashPassword = async (req, res, next) => {
 };
 
 export const authanticate = async (req, res, next) => {
-  const user = users.find((u) => u.email === req.body.email);
+  const user = users.findUser((u) => u.email === req.body.email);
 
   if (user) {
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (validPassword) {
       next();
-    } else {
-      return res.status(404).send({
-        status: 404,
-        message: 'Password is not match, please try again.',
-      });
     }
   } else {
     return res.status(404).send({
@@ -54,12 +49,11 @@ export function isuser(req, res, next) {
   return 0;
 }
 export async function isEmailUsed(req, res, next) {
-
-  const user = await Database.selectBY('users', 'email', req.body.email);
+  const user = await Database.selectBy('users', 'email', req.body.email);
 
   if (user.rowCount !== 0) {
-    return res.status(401).send({
-      status: 401,
+    return res.status(409).send({
+      status: 409,
       message: 'Email already exist',
       data: user.rows[0].email,
     });
