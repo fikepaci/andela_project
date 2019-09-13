@@ -92,18 +92,18 @@ describe('users authentication activities test', () => {
         console.log(err.message);
       });
   });
+});
+describe('users authentication activities test', () => {
   it('admin should change user to mentor', (done) => {
     chai.request(app).patch('/api/v2/user/2')
       .set('token', adminToken)
-      .then((res) => {
+      .send((err, res) => {
         console.log('change user to mentee !!!!!!!!!!!!!!!!!!!!!', res);
 
         chai.expect(res).to.have.status(200);
         done();
-      })
-      .catch((err) => {
-        console.log(err.message);
       });
+    setTimeout(done, 10000);
   });
 });
 
@@ -115,6 +115,7 @@ describe('View Mentor', () => {
         res.should.have.status(200);
         done();
       });
+    setTimeout(done, 10000);
   });
 });
 
@@ -126,5 +127,6 @@ describe('View specific Mentor', () => {
         res.should.have.status(200);
         done();
       });
+    setTimeout(done, 10000);
   });
 });
