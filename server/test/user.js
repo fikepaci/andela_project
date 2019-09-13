@@ -93,40 +93,40 @@ describe('users authentication activities test', () => {
       });
   });
 });
-// describe('admin create Mentee', () => {
-//   it('admin should change user to mentor', (done) => {
-//     chai.request(app).patch('/api/v2/user/2')
-//       .set('token', adminToken)
-//       .send((err, res) => {
-//         console.log('change user to mentee !!!!!!!!!!!!!!!!!!!!!', res);
+describe('admin create Mentee', () => {
+  it('admin should change user to mentor', (done) => {
+    chai.request(app).patch('/api/v2/user/2')
+      .set('token', adminToken)
+      .send((err, res) => {
+        console.log('change user to mentee !!!!!!!!!!!!!!!!!!!!!', res);
 
-//         chai.expect(res).to.have.status(200);
-//         done();
-//       });
-//     setTimeout(done, 10000);
-//   });
-// });
+        chai.expect(res).to.have.status(200);
+        done();
+      });
+    setTimeout(done, 10000);
+  });
+});
 
-// describe('View Mentor', () => {
-//   it('user should view all mentors', (done) => {
-//     chai.request(app).get('/api/v2/mentors')
-//       .set('token', userToken3)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         done();
-//       });
-//     setTimeout(done, 10000);
-//   });
-// });
+describe('View Mentor', () => {
+  it('user should view all mentors', (done) => {
+    chai.request(app).get('/api/v2/mentors')
+      .set('token', userToken3)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+    setTimeout(done, 10000);
+  });
+});
 
-// describe('View specific Mentor', () => {
-//   it('user should view specific mentor', (done) => {
-//     chai.request(app).get('/api/v2/mentors/2')
-//       .set('token', usertoken4)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         done();
-//       });
-//     setTimeout(done, 10000);
-//   });
-// });
+describe('View specific Mentor', () => {
+  it('user should view specific mentor', (done) => {
+    chai.request(app).get('/api/v2/mentors/2')
+      .set('token', usertoken4)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+    setTimeout(done, 10000);
+  });
+});
