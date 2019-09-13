@@ -14,9 +14,9 @@ const app = express();
 app.use(bodyParser.json());
 
 
-app.use('/api/v1', userRoutes);
-app.use('/api/v1', sessionroutes);
-app.use('/api/v1', reviewroutes);
+app.use('/api/v2', userRoutes);
+app.use('/api/v2', sessionroutes);
+app.use('/api/v2', reviewroutes);
 
 app.use('/docs', swaggerui.serve, swaggerui.setup(swaggerdocument));
 

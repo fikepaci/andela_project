@@ -14,5 +14,5 @@ export class User {
 }
 
 export const users = [
-  new User(1, 'johndoe@gmail.com', 'john', 'doe', '$2b$10$jNllDN/COLawsFtvBUKMoe83FKvkXKI/gJC0wSYRthzmxNistpxVi', 'Rwanda, gikondo, 1890,kicukiro', 'i like learning new things', 'software developer', '10 years', 'admin'),
+  new User(1, 'johndoe@gmail.com', 'john', 'doe', '$2b$10$jNllDN/COLawsFtvBUKMoe83FKvkXKI/gJC0wSYRthzmxNistpxVi', 'Rwanda, gikondo, 1890,kicukiro', 'i like learning new things', 'software developer', '10 years', 'admin')
 ];

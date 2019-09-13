@@ -9,7 +9,7 @@
             "url": "https://github.com/fikepaci/free-mentor.git"
         }
     },
-    "basePath": "/api/v1",
+    "basePath": "/api/v2",
     "tags": [
         {
             "name": "Users",

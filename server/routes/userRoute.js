@@ -12,12 +12,13 @@ const router = Router();
 
 router.post('/auth/signup', validate, isEmailUsed, hashPassword, signup);
 
-router.post('/auth/signin', validate, authanticate, signin);
+router.post('/auth/signin', validate, signin);
 
 router.patch('/user/:userId', verifyToken, isAdmin, upgradetomentor);
 
 router.get('/mentors', verifyToken, isuser, allmentors);
 
 router.get('/mentors/:mentorId', verifyToken, isuser, specificmentor);
+
 
 export default router;
