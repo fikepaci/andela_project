@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development npm run createTable && cross-env NODE_ENV=development npm run admin && cross-env NODE_ENV=development nodemon --exec babel-node ./server/app.js",
     "start": "cross-env NODE_ENV=production npm run dropTables && cross-env NODE_ENV=production npm run createTables && cross-env NODE_ENV=production npm run admin && cross-env NODE_ENV=production babel-node ./server/app.js",
-    "test": "cross-env NODE_ENV=test npm run dropTables && cross-env NODE_ENV=test npm run createTable && cross-env NODE_ENV=test npm run admin && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha server/test/allTest.js --require @babel/polyfill  --require @babel/register --exit",
+    "test": "cross-env NODE_ENV=test npm run dropTables && cross-env NODE_ENV=test npm run createTable && cross-env NODE_ENV=test npm run admin && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha server/test/allTest.js --require @babel/polyfill  --require @babel/register --timeout 10000 --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTable": "node --require @babel/polyfill --require @babel/register server/database/createTables.js",
     "dropTables": "node --require @babel/polyfill --require @babel/register server/database/dropTables.js",

@@ -91,10 +91,12 @@ describe('users activities test', () => {
         console.log(err.message);
       });
   });
-  it('user should change user to mentor', (done) => {
+  it('admin should change user to mentor', (done) => {
     chai.request(app).patch('/api/v2/user/2')
       .set('token', adminToken)
       .then((res) => {
+        console.log('change user to mentee !!!!!!!!!!!!!!!!!!!!!', res);
+
         chai.expect(res).to.have.status(200);
         done();
       })
@@ -106,6 +108,7 @@ describe('users activities test', () => {
     chai.request(app).get('/api/v2/mentors')
       .set('token', userToken3)
       .then((res) => {
+        console.log('user view all mentee !!!!!!!!!!!!!!!!!!!!!', res);
         chai.expect(res).to.have.status(200);
         done();
       })
@@ -117,6 +120,7 @@ describe('users activities test', () => {
     chai.request(app).get('/api/v2/mentors/2')
       .set('token', usertoken4)
       .then((res) => {
+        console.log('user view specific mentee !!!!!!!!!!!!!!!!!!!!!', res);
         chai.expect(res).to.have.status(200);
         done();
       })
