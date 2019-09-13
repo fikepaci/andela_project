@@ -12,25 +12,6 @@ export async function createreview(req, res) {
   sessionId = parseInt(sessionId, 10);
   const user = await Database.findUser('sessions', 'sessionid', sessionId);
   const user1 = await Database.findUser('users', 'userid', user.rows[0].menteeid);
-  console.log('here', req.params, sessionId, user, verified);
-
-  // if (user.rowCount !== 0) {
-  //   const reviewNew = {
-  //     sessionid: user.rows[0].sessionid,
-  //     mentorid: user.rows[0].mentorid,
-  //     menteeid: parseInt(user1.rows[0].userid, 10),
-  //     score: req.body.score,
-  //     menteefullname: `${user1.rows[0].firstname} ${user1.rows[0].lastname}`,
-  //     remark: req.body.remark,
-  //   };
-
-  //   const result = await Database.createReviews(reviewNew);
-  //   return res.status(201).send({
-  //     status: 201,
-  //     message: 'review created successfully',
-  //     data: result.rows[0],
-  //   });
-  // }
   return res.status(404).send({
     status: 404,
     message: 'not found',

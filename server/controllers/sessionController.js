@@ -1,4 +1,3 @@
-// import { Session, sessions } from '../models/sessionModel';
 import jwt from 'jsonwebtoken';
 import Database from '../database/queries';
 import { User } from '../models/userModel';
@@ -35,7 +34,6 @@ export async function createsession(req, res) {
 export async function acceptsession(req, res) {
   const { sessionId } = req.params;
   const acceptSession = await Database.acceptsession('sessions', 'sessionid', sessionId);
-  console.log(acceptSession);
   if (acceptSession.rowCount === 0) {
     return res.status(400).send({
       status: 400,
@@ -70,7 +68,6 @@ export async function acceptsession(req, res) {
 export async function rejectsession(req, res) {
   const { sessionId } = req.params;
   const acceptSession = await Database.rejectsession('sessions', 'sessionid', sessionId);
-  console.log(acceptSession);
   if (acceptSession.rowCount === 0) {
     return res.status(400).send({
       status: 400,

@@ -85,14 +85,6 @@ export async function allmentors(req, res) {
 export async function specificmentor(req, res) {
   const { mentorId } = req.params;
   const specificMentor = await Database.viewSpecificMentor('users', 'userid', mentorId);
-  // console.log();
-  // const tempData = specificMentor.rows[0];
-  // specificMentor = { ...tempData };
-  // console.log('before', specificMentor);
-
-  // delete specificMentor.rows[0].password;
-
-  // console.log('after', specificMentor);
   if (specificMentor.rows[0]) {
     delete specificMentor.rows[0].password;
     return res.status(200).send({
