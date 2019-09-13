@@ -5,41 +5,15 @@ import { it, describe } from 'mocha';
 import jwt from 'jsonwebtoken';
 
 import app from '../app';
+
+import {
+  newuser, admin, generalusers, signedUser, newUserCredentials,
+} from './mockData';
+
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
 
-const newuser = {
-  email: 'paci@gmail.com',
-  firstname: 'nicolas',
-  lastname: 'aimable',
-  password: 'fikepaci20',
-  address: 'kigali,kicukiro',
-  bio: 'i like learning',
-  occupation: 'student',
-  expertise: '5years',
-};
-const generalusers = {
-  email: 'pacifique@gmail.com',
-  firstname: 'brian',
-  lastname: 'james',
-  password: 'kicukiro2',
-  address: 'kigali,kist',
-  bio: 'i like knowing new things',
-  occupation: 'developer',
-  expertise: '2years',
-};
-
-
-const admin = {
-  email: 'johdndoe@gmail.com',
-};
-const signedUser = {
-  email: newuser.email,
-};
-const newUserCredentials = {
-  email: generalusers.email,
-};
 
 const adminToken = jwt.sign(admin, process.env.KEY, { expiresIn: '1D' });
 const userToken = jwt.sign(signedUser, process.env.KEY, { expiresIn: '1D' });
@@ -97,3 +71,4 @@ describe('user should view list of all mentors', () => {
       });
   });
 });
+

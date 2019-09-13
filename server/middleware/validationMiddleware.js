@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import Schemas from '../helpers/validation.helper';
+import Schemas from '../helpers/validationHelper';
 
 const validate = (req, res, next) => {
   // enabled HTTP methods for request data validation

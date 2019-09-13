@@ -4,10 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./server/server.js",
-    "start": "babel-node ./server/server.js",
-    "test": "nyc --reporter=text --reporter=html mocha server/test/allTest.js --require @babel/polyfill  --require @babel/register --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "dev": "cross-env NODE_ENV=development npm run createTable && cross-env NODE_ENV=development npm run admin && cross-env NODE_ENV=development nodemon --exec babel-node ./server/app.js",
+    "start": "cross-env NODE_ENV=production npm run dropTables && cross-env NODE_ENV=production npm run createTable && cross-env NODE_ENV=production npm run admin && cross-env NODE_ENV=production babel-node ./server/app.js",
+    "test": "cross-env NODE_ENV=test npm run dropTables && cross-env NODE_ENV=test npm run createTable && cross-env NODE_ENV=test npm run admin && cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha server/test/allTest.js --require @babel/polyfill  --require @babel/register --exit",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "createTable": "node --require @babel/polyfill --require @babel/register server/database/createTables.js",
+    "dropTables": "node --require @babel/polyfill --require @babel/register server/database/dropTables.js",
+    "admin": "node --require @babel/polyfill --require @babel/register server/database/admin.js"
   },
   "repository": {},
   "keywords": [],
@@ -29,12 +32,14 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.0.6",
+    "cross-env": "^5.2.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.2.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1",
+    "pg": "^7.12.1",
     "swagger-ui-express": "^4.0.7",
     "travis-ci": "^2.2.0"
   },
