@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import { users } from '../models/userModel';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ class Database {
         connectionString: process.env.DATABASE_URL,
       });
     }
+    return 0;
   }
 
   static createTables() {
@@ -84,10 +86,93 @@ class Database {
     return result;
   }
 
-  static async selectBY(table, column, row) {
+  static createReviews(data) {
+    const conn = this.databaseConnection();
+    const result = conn.query(`INSERT into reviews (sessionid, mentorid, menteeid, score, menteefullname, remark) VALUES (
+        ${data.sessionid},
+        ${data.mentorid},
+        ${data.menteeid},
+        ${data.score},
+        '${data.menteefullname}',
+        '${data.remark}')returning *`);
+    conn.end();
+    return result;
+  }
+
+  static async upgradeToMentor(table, column, value) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`UPDATE ${table} SET type='mentor' WHERE ${column} = '${value}'`);
+    await conn.end();
+    return result;
+  }
+
+  static async acceptsession(table, column, value) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`UPDATE ${table} SET status='accepted' WHERE ${column} = '${value}'`);
+    await conn.end();
+    return result;
+  }
+
+  static async rejectsession(table, column, value) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`UPDATE ${table} SET status='rejected' WHERE ${column} = '${value}'`);
+    await conn.end();
+    return result;
+  }
+
+  static async findUser(table, column, value) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`SELECT * FROM ${table} WHERE ${column} = '${value}'`);
+    await conn.end();
+    return result;
+  }
+
+  static async viewMentors() {
+    const conn = this.databaseConnection();
+    const result = await conn.query("SELECT * FROM users WHERE type = 'mentor'");
+    await conn.end();
+    return result;
+  }
+
+  static async viewSessiions() {
+    const conn = this.databaseConnection();
+    const result = await conn.query('SELECT * FROM sessions');
+    await conn.end();
+    return result;
+  }
+
+  static async viewUsers() {
+    const conn = this.databaseConnection();
+    const result = await conn.query(' SELECT userid,email FROM users ');
+    await conn.end();
+    return result;
+  }
+
+  static async viewSpecificMentor(table, column, value) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`SELECT * FROM ${table} WHERE type='mentor' AND ${column} = '${value}'`);
+    await conn.end();
+    return result;
+  }
+
+  static async selectBy(table, column, row) {
     const conn = this.databaseConnection();
     const result = await conn.query(`SELECT * FROM ${table} WHERE ${column} = '${row}'`);
-    conn.end();
+    await conn.end();
+    return result;
+  }
+
+  static async createSessions(data) {
+    const conn = this.databaseConnection();
+    const result = await conn.query(`INSERT into sessions (mentorid, menteeid, questions, menteeemail, status) VALUES (
+        ${data.mentorid},
+        ${data.menteeid},
+        '${data.questions}',
+        '${data.menteeemail}',
+        '${data.status}'
+      ) returning *;
+      `);
+    await conn.end();
     return result;
   }
 }
