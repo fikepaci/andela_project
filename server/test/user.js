@@ -22,7 +22,7 @@ const usertoken4 = jwt.sign(user4, process.env.KEY, { expiresIn: '1D' });
 const usergeneraltoken = jwt.sign(newUserCredentials, process.env.KEY, { expiresIn: '1D' });
 
 
-describe('users activities test', () => {
+describe('users authentication activities test', () => {
   it('user should be able to signup', (done) => {
     chai.request(app).post('/api/v2/auth/signup')
       .send(newuser)
@@ -38,6 +38,7 @@ describe('users activities test', () => {
     chai.request(app).post('/api/v2/auth/signup')
       .send(newuser2)
       .then((res) => {
+        console.log('user signed up !!!!!!!!!!!!!!!!!!!!!', res);
         chai.expect(res).to.have.status(201);
         done();
       })
@@ -104,28 +105,26 @@ describe('users activities test', () => {
         console.log(err.message);
       });
   });
+});
+
+describe('View Mentor', () => {
   it('user should view all mentors', (done) => {
     chai.request(app).get('/api/v2/mentors')
       .set('token', userToken3)
-      .then((res) => {
-        console.log('user view all mentee !!!!!!!!!!!!!!!!!!!!!', res);
-        chai.expect(res).to.have.status(200);
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
-      })
-      .catch((err) => {
-        console.log(err.message);
       });
   });
+});
+
+describe('View specific Mentor', () => {
   it('user should view specific mentor', (done) => {
     chai.request(app).get('/api/v2/mentors/2')
       .set('token', usertoken4)
-      .then((res) => {
-        console.log('user view specific mentee !!!!!!!!!!!!!!!!!!!!!', res);
-        chai.expect(res).to.have.status(200);
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
-      })
-      .catch((err) => {
-        console.log(err.message);
       });
   });
 });
